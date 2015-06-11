@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ID:</strong>
+  <%= @order.id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @order.date %>
+</p>
+
+<p>
+  <strong>Bill to name:</strong>
+  <%= @order.bill_to_name %>
+</p>
+
+<p>
+  <strong>Bill to org:</strong>
+  <%= @order.bill_to_org %>
+</p>
+
+<p>
+  <strong>Bill to address:</strong>
+  <%= @order.bill_to_address %>
+</p>
+
+<p>
+  <strong>Bill to email:</strong>
+  <%= @order.bill_to_email %>
+</p>
+
+<p>
+  <strong>Extra notes:</strong>
+  <%= @order.extra_notes %>
+</p>
+
+<p>
+  <strong>Extra others:</strong>
+  <%= @order.extra_others %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

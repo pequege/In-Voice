@@ -1,0 +1,45 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :bill_to_name, "Client name"  %><br>
+    <%= f.text_field :bill_to_name %>
+  </div>
+  <div class="field">
+    <%= f.label :bill_to_org, "Organization"  %><br>
+    <%= f.text_field :bill_to_org %>
+  </div>
+  <div class="field">
+    <%= f.label :bill_to_address, "Address"  %><br>
+    <%= f.text_field :bill_to_address %>
+  </div>
+  <div class="field">
+    <%= f.label :bill_to_email, "E-mail"  %><br>
+    <%= f.text_field :bill_to_email %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_notes, "Notes"  %><br>
+    <%= f.text_field :extra_notes %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_others, "Others"  %><br>
+    <%= f.text_field :extra_others %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
