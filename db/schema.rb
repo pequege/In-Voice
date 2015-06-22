@@ -11,36 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611143813) do
+ActiveRecord::Schema.define(version: 20150622204431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
     t.integer  "order_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "organization"
+    t.string   "address"
+    t.string   "email"
+    t.string   "url"
+    t.string   "language"
+  end
+
+  add_index "clients", ["order_id"], name: "index_clients_on_order_id", using: :btree
+
+  create_table "details", force: :cascade do |t|
     t.string   "project"
-    t.string   "task"
-    t.string   "description"
-    t.integer  "hours"
-    t.decimal  "rate"
-    t.integer  "amount"
+    t.integer  "order_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "task"
+    t.string   "description"
+    t.decimal  "rate"
+    t.decimal  "hour"
+    t.decimal  "amount"
+    t.decimal  "plus"
   end
 
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "details", ["order_id"], name: "index_details_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.date     "date"
-    t.string   "bill_to_name"
-    t.string   "bill_to_org"
-    t.string   "bill_to_address"
-    t.string   "bill_to_email"
-    t.string   "extra_notes"
-    t.string   "extra_others"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "extra"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "client_id"
+    t.string   "other"
   end
+
+  add_index "orders", ["client_id"], name: "index_orders_on_client_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -60,5 +73,6 @@ ActiveRecord::Schema.define(version: 20150611143813) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "order_items", "orders"
+  add_foreign_key "clients", "orders"
+  add_foreign_key "details", "orders"
 end

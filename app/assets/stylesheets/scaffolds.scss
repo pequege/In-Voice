@@ -1,9 +1,14 @@
+$white: #E6E6E6;
+$blue: #2980B9;
+$rose: #e81090;
+
 body {
-  background-color: #fff;
+  background: url('bkg_pattern.gif');
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin: 0 auto;
 }
 
 p, ol, ul, td {
@@ -19,19 +24,9 @@ pre {
 }
 
 a {
-  color: #000;
+  text-decoration: none;
   &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
+    text-decoration: none;
   }
 }
 
@@ -65,5 +60,46 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
+  }
+}
+
+#nav{
+  background-color: $blue;
+  color: $white;
+  a{
+    color: $white;
+  }
+  ul{
+    list-style: none;
+    display: flex;
+    height: 50px;
+    margin: 0 auto;
+    li{
+      // border-left: 2px solid #fff;
+      color: $white;
+      font-size: 25px;
+      font-weight: bolder;
+      margin: 15px;
+      a:hover{
+        background-color: #3498DB;
+      }
+      span{
+        color: $rose;
+      }
+      &:first-child{
+        border-left: none;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+#total{
+  ul{
+    list-style: none;
+    width: 300px;
+    li{
+      border-bottom: 2px solid #000;
+    }
   }
 }

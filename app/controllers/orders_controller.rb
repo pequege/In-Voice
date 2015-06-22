@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
-
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -16,10 +15,12 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @order.details.build
   end
 
   # GET /orders/1/edit
   def edit
+    @order.details.build
   end
 
   # POST /orders
@@ -70,6 +71,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:date, :bill_to_name, :bill_to_org, :bill_to_address, :bill_to_email, :extra_notes, :extra_others)
+      params.require(:order).permit(:extra, :client_id, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
     end
 end
