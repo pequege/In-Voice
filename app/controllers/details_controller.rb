@@ -1,6 +1,7 @@
 class DetailsController < ApplicationController
   before_action :set_detail, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /details
   # GET /details.json
   def index

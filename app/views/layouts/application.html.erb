@@ -15,6 +15,7 @@
       <% end %></li>
       <% if user_signed_in? %>
       <li><%= link_to 'My Invoices', orders_path %></li>
+      <li><%= link_to 'My Clients', clients_path %></li>
       <li><%= link_to 'Edit account', edit_user_registration_path %></li>
       <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
       <% else %>

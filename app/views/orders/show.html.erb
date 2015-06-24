@@ -1,21 +1,19 @@
-<p id="notice"><%= notice %></p>
-
 <div id="invoice_preview">
+  <%= image_tag("insignia_header.png", class: "header_img") %>
   <div id="header">
     <div id="id_number">#<%= @order.id %></div>
-    <div class="date">INVOICE <br> <%= @order.created_at.strftime("%B %d,%Y") %></div>
+    <div class="date"><b>INVOICE</b> <br> <%= @order.created_at.strftime("%B %d,%Y") %></div>
   </div>
 
 
   <div id="bill_to">
-    <h2>Bill to:</h2>
+    <div class="title"><h2>BILL TO</h2><i class="fa fa-file-text-o"></i></div>
     <% if @order.client %>
       <ul>
-        <li><%= @order.client.name %></li>
-        <li><%= @order.client.email %></li>
-        <li><%= @order.client.organization %></li>
+        <li><%= @order.client.name %> | <span class="email"><%= @order.client.email %></span></li>
+        <li class="org-name"><%= @order.client.organization %></li>
         <li><%= @order.client.address %></li>
-        <li><%= @order.client.url %></li>
+        <li><%= link_to @order.client.url, @order.client.url %></li>
       </ul>
     <% end %>
   </div>
@@ -23,8 +21,7 @@
   <table>
     <thead>
       <tr>
-        <th></th>
-        <th>Project</th>
+        <th class="title" colspan="2">Project</th>
         <th>Task</th>
         <th>Description</th>
         <th>HS</th>
@@ -35,37 +32,74 @@
     <tbody>
       <% @order.details.each do |detail| %>
         <tr>
-          <th><%= detail.id %></th>
+          <th class="black_cell"><%= detail.id %></th>
           <th><%= detail.project %></th>
           <th><%= detail.task %></th>
           <th><%= detail.description %></th>
           <th><%= detail.hour %></th>
-          <th><%= detail.rate %></th>
-          <th><%= detail.amount=((detail.hour)*(detail.rate)) %></th>
+          <th><%= number_to_currency detail.rate %></th>
+          <th><%= number_to_currency detail.amount %></th>
         </tr>
       <% end %>
+      <tr>
+        <th class="black_cell" colspan="2"></th>
+        <th class="black_cell"></th>
+        <th class="black_cell"></th>
+        <th class="black_cell"></th>
+        <th class="black_cell"></th>
+        <th class="black_cell"></th>
+      </tr>
     </tbody>
   </table>
 
   <div id="pricing">
     <div id="notes">
       <div id="extra">
-        <strong>Additional notes:</strong>
+        <strong>Additional notes: <br></strong>
         <%= @order.extra %>
       </div>
       <div id="others">
-        <strong>Others:</strong>
+        <strong>Others: <br></strong>
         <%= @order.other %>
       </div>
     </div>
     <div id="total">
-      <ul>
-        <li>Subtotal: <%= Detail.sum(:amount) %></li>
-        <li>Others:</li>
-        <li>TOTAL:</li>
-      </ul>
+      <table>
+        <tr>
+          <th>Subtotal:</th>
+          <th>USD</th>
+          <th><%= number_to_currency @order.subtotal %></th>
+        </tr>
+        <tr>
+          <th>Others:</th>
+          <th>USD</th>
+          <th></th>
+        </tr>
+        <tr class="total-border">
+          <th>TOTAL:</th>
+          <th>USD</th>
+          <th></th>
+        </tr>
+      </table>
     </div>
   </div>
+
+  <h2>THANK YOU FOR YOUR BUSINESS</h2>
+
+  <footer>
+    <ul>
+      <li><i class="fa fa-laptop"> http://www.insignia4u.com</i> - 
+      <i class="fa fa-envelope"> contacto@insignia4u.com</i> - 
+      <i class="fa fa-google-plus-square"> /+insignia4u</i> - 
+      <i class="fa fa-facebook-official"> /inisgnia4u</i> - 
+      <i class="fa fa-twitter"> @insignia4u</i> - 
+      <i class="fa fa-github"> /insignia4u</i></li>
+      <li><i class="fa fa-map-marker"> Lamadrid 318, 4oA, 5oB, San Miguel de Tucumán, Tucumán, Argentina
+</i> - 
+      <i class="fa fa-phone"> +54 (381) 4202730
+</i> - </li>
+    </ul>
+  </footer>
 </div>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

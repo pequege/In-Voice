@@ -18,6 +18,10 @@
   <% end %>
 
   <div class="field">
+    <% if @order.updated_at? %>
+      <%= f.label :Fecha %><br>
+      <%= f.date_field :created_at %><br>
+    <% end %>
     <%= f.label :Additional %><br>
     <%= f.text_field :extra %><br>
     <%= f.label :extra %><br>
