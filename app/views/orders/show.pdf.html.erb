@@ -1,5 +1,5 @@
 <div id="invoice_preview">
-  <%= image_tag("insignia_header.png", class: "header_img") %>
+  <%= image_tag 'http://i.imgur.com/MmaOZJW.png' %>
   <div id="header">
     <div id="id_number">#<%= @order.id %></div>
     <div class="date"><b>INVOICE</b> <br> <%= @order.created_at.strftime("%B %d,%Y") %></div>
@@ -102,6 +102,3 @@
     </ul>
   </footer>
 </div>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

@@ -21,7 +21,11 @@ $rose: #e81090;
 }
 
 .total-border{
-  border-top: 2px $blue double;
+  border-top: 10px $blue double;
+}
+
+.iam-blue{
+  color: $blue;
 }
 
 #invoice_preview{
@@ -70,9 +74,6 @@ $rose: #e81090;
       li{
       }
     }
-    i{
-      float: right;
-    }
   }
   #pricing{
     display: flex;
@@ -84,6 +85,7 @@ $rose: #e81090;
     }
   }
   footer{
+    text-align: center;
     ul{
       list-style: none;
     }
@@ -102,4 +104,10 @@ thead{
 
 tbody{
   background-color: $grey;
+  .no-style{
+    background-color: white;
+  }
+}
+
+tr{
 }

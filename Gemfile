@@ -11,7 +11,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'cocoon' #for nested forms
-gem 'font-awesome-sass'
+gem 'font-awesome-sass' #for awesome icons
+gem 'wicked_pdf' #for PDF export
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'byebug'

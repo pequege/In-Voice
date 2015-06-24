@@ -11,6 +11,15 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "order",
+        template: 'orders/show.pdf.html.erb',
+        show_as_html:params[:debug].present? ,
+        layout: "pdf_layout.html"
+      end
+    end
   end
 
   # GET /orders/new
