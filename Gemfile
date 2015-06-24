@@ -1,3 +1,5 @@
+ruby "2.2.1"
+
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
@@ -14,6 +16,7 @@ gem 'cocoon' #for nested forms
 gem 'font-awesome-sass' #for awesome icons
 gem 'wicked_pdf' #for PDF export
 gem 'wkhtmltopdf-binary'
+gem 'rails_12factor', group: :production 
 
 group :development, :test do
   gem 'byebug'
