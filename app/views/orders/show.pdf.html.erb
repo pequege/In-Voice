@@ -30,9 +30,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @order.details.each do |detail| %>
+      <% @order.details.each_with_index do |detail, index| %>
         <tr>
-          <th class="black_cell"><%= detail.id %></th>
+          <th class="black_cell"><%= index+1 %></th>
           <th><%= detail.project %></th>
           <th><%= detail.task %></th>
           <th><%= detail.description %></th>

@@ -5,19 +5,24 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = current_user.orders.find_by(id: params[:id])
     respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "order",
-        template: 'orders/show.pdf.html.erb',
-        show_as_html:params[:debug].present? ,
-        layout: "pdf_layout.html"
+      if @order
+        format.html
+        format.pdf do
+          render pdf: "order",
+          template: 'orders/show.pdf.html.erb',
+          show_as_html:params[:debug].present? ,
+          layout: "pdf_layout.html"
+        end
+      else
+        format.html { redirect_to root_path, notice: 'no se haga el pillo'}
       end
     end
   end
@@ -36,7 +41,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     respond_to do |format|
       if @order.save

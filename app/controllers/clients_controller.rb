@@ -5,12 +5,20 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = current_user.clients
   end
 
   # GET /clients/1
   # GET /clients/1.json
   def show
+    @client = current_user.clients.find_by(id: params[:id])
+    respond_to do |format|
+      if @client
+        format.html
+      else
+        format.html {redirect_to root_path, notice: "No te hagas el pillo, picaron"}
+      end
+    end
   end
 
   # GET /clients/new
@@ -25,7 +33,7 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
-    @client = Client.new(client_params)
+    @client = current_user.clients.build(client_params)
 
     respond_to do |format|
       if @client.save

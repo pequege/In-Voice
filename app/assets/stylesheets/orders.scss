@@ -28,6 +28,11 @@ $rose: #e81090;
   color: $blue;
 }
 
+.header_img{
+  float: right;
+  width: 36%;
+}
+
 #invoice_preview{
   background-color: white;
   box-shadow: 10px 10px 40px #888888;
@@ -46,18 +51,15 @@ $rose: #e81090;
   }
   #header{
     display: flex;
+    padding-top: 260px;
     #date{
       font-weight: bolder;
       margin-left: 15px;
     }
     #id_number{
       color: $rose;
-      font-size: 25px;
+      font-size: 64px;
       font-weight: bolder;
-    }
-    .header_img{
-      height: 44%;
-      width: 44%;
     }
   }
   #bill_to{
