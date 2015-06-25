@@ -29,20 +29,24 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.build
     @order.details.build
+    @min = current_user.min_index || 0
+    @value = @min + current_user.orders.count
   end
 
   # GET /orders/1/edit
   def edit
     @order.details.build
+    @order = Order.find(params[:id])
+    @min  = current_user.min_index 
+    @value = @order.order_number
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = current_user.orders.build(order_params)
-
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -86,6 +90,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:extra, :other, :created_at, :client_id, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
+      params.require(:order).permit(:extra, :other, :created_at, :client_id, :charge, :order_number, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
     end
 end
