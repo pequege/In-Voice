@@ -12,7 +12,7 @@
   <% end %>
 
 <div class="form-style">
-  <%= f.input :order_number %><br>
+  <%= f.input :order_number, input_html: { min: '1', step: 'any' } %><br>
   <h2>Details</h2>
   <div id="details">
     <%= f.simple_fields_for :details do |detail| %>
@@ -29,7 +29,7 @@
     <%= f.input :extra %><br>
     <%= f.input :other %><br>
     <%= f.input :currensy_type, :collection => ['ARS', 'EUR', 'USD'] %><br>
-    <%= f.input :charge %>
+    <%= f.input :charge, input_html: { min: '1', step: 'any' } %>
   </div>
   <div class="form-style">
     <h2>Clients</h2>
