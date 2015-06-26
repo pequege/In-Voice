@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :client_presence, only: [:new, :index]
 
   # GET /orders
   # GET /orders.json
@@ -12,6 +13,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = current_user.orders.find_by(id: params[:id])
+    I18n.locale = @order.client.language
     respond_to do |format|
       if @order
         format.html
@@ -22,7 +24,7 @@ class OrdersController < ApplicationController
           layout: "pdf_layout.html"
         end
       else
-        format.html { redirect_to root_path, notice: 'no se haga el pillo'}
+        format.html { redirect_to root_path, notice: 'invalid url'}
       end
     end
   end
@@ -90,6 +92,13 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:extra, :other, :created_at, :client_id, :charge, :order_number, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
+      params.require(:order).permit(:extra, :other, :created_at, :client_id, :charge, :order_number, :currensy_type, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
+    end
+
+    def client_presence
+      @client = current_user.clients
+        unless @client.any?
+          redirect_to root_path
+        end
     end
 end

@@ -1,3 +1,7 @@
-<h1>Home#index</h1>
-<%= link_to "Add Order", new_order_path %>
-<%= link_to "Add Client", new_client_path %>
+<% if current_user.clients.any? %>
+  <%= link_to "Add Order", new_order_path %>
+  <%= link_to "Add Client", new_client_path %>
+<% else %>
+  <%= render 'add_clients' %>
+<% end %>
+  

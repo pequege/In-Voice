@@ -64,6 +64,9 @@ $rose: #e81090;
   }
   #bill_to{
     background-color: #e9e9e9;
+    .title{
+      text-transform: uppercase;
+    }
     .email{
       opacity: 0.75;
     }
@@ -88,6 +91,9 @@ $rose: #e81090;
   }
   footer{
     text-align: center;
+    h2{
+      text-transform: uppercase;
+    }
     ul{
       list-style: none;
     }
@@ -109,7 +115,4 @@ tbody{
   .no-style{
     background-color: white;
   }
-}
-
-tr{
 }

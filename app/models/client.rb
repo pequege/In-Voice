@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  belongs_to :users
-  has_many :orders
+  belongs_to :user
+  has_many :orders, dependent: :destroy
   validates :name, presence: true
 end

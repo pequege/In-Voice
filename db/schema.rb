@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625182349) do
+ActiveRecord::Schema.define(version: 20150626202808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150625182349) do
     t.string   "url"
     t.string   "language"
     t.integer  "user_id"
+    t.string   "client_lang"
   end
 
   add_index "clients", ["order_id"], name: "index_clients_on_order_id", using: :btree
@@ -49,13 +50,14 @@ ActiveRecord::Schema.define(version: 20150625182349) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "extra"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "client_id"
     t.string   "other"
     t.integer  "user_id"
-    t.decimal  "charge",       precision: 8, scale: 2
+    t.decimal  "charge",        precision: 8, scale: 2
     t.integer  "order_number"
+    t.string   "currensy_type"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id", using: :btree

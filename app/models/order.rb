@@ -3,10 +3,11 @@ class Order < ActiveRecord::Base
   belongs_to :client
   has_many :details, dependent: :destroy
   accepts_nested_attributes_for :details, :reject_if => :all_blank, allow_destroy: true
-  validates :extra, presence: true
+  validates :extra, :client, presence: true
   validates :order_number, uniqueness: true
 
   TASK_TYPES = [ "Backend development", "Frontend development", "Technical Direction", "Project Management", "Other" ]
+  CURRENSY_TYPE = [ "ARS", "EUR", "USD" ]
 
   def subtotal
     subtotal = details.sum(:amount)

@@ -26,6 +26,9 @@
   <div class="field">
     <%= f.input :url %>
   </div>
+  <div class="field">
+    <%= f.select :language, [['English', 'en'], ['Español', 'es']] %><br>
+  </div>
   <div class="actions">
     <%= f.submit 'Save' %>
   </div>

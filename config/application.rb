@@ -24,5 +24,9 @@ module InVoice
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += ["*.ttf", "*.woff", "*.svg", "*.eot"] 
+
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = [:en, :es]
+    config.i18n.default_locale = :en
   end
 end
