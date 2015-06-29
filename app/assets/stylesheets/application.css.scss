@@ -17,3 +17,12 @@
 @import "materialize/components/color";
 $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
+
+.btn{
+  i{
+    font-size: 12px;
+  }
+}
+.nav-wrapper{
+  background-color: #28467b;
+}

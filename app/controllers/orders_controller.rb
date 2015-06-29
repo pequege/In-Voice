@@ -33,7 +33,11 @@ class OrdersController < ApplicationController
   def new
     @order = current_user.orders.build
     @order.details.build
-    @min = current_user.min_index || 0
+    if current_user.min_index?
+      @min = current_user.min_index  
+    else
+      @min = 0
+    end
     @value = @min + current_user.orders.count
   end
 

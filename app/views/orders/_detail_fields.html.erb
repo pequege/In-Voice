@@ -1,5 +1,8 @@
 <div class="nested-fields form-style">
-  <%= f.input :project %>
+  <div class="field input-field">
+    <%= f.text_field :project %>
+    <%= label_tag "Project" %>
+  </div>
   <%= f.label :task, "Task: " %>
   <%= f.select :task do %>
     <option value="" disabled selected>Choose your option</option>
@@ -7,7 +10,10 @@
       <%= content_tag(:option, task, value: task) %>
     <%end%>
   <%end%>
-  <%= f.input :description %>
+  <div class="field input-field">
+    <%= f.text_area :description, class: "materialize-textarea", length: "99" %>
+    <%= label_tag "Description" %>
+  </div>
   <%= f.input :rate, input_html: { min: '1', step: 'any' }  %>
   <%= f.input :hour, input_html: { min: '1', step: 'any' }  %>
   <i class="fa fa-trash"></i><%= link_to_remove_association(" Remove line", f) %>

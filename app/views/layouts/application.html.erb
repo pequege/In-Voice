@@ -8,12 +8,24 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<div id="nav">
-  <div id="user">
-    <ul>
-      <li><%= link_to root_path do %>
-        <span>(</span>in<span>)</span>voice
-      <% end %></li>
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to root_path class: "brand-logo" do %>
+      <%= image_tag "invoice-logo.png" %>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <% end %>
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+      <li><%= link_to 'My Invoices', orders_path %></li>
+      <li><%= link_to 'My Clients', clients_path %></li>
+      <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+    </ul>
+    <ul class="side-nav" id="mobile-demo" >
       <% if user_signed_in? %>
       <li><%= link_to 'My Invoices', orders_path %></li>
       <li><%= link_to 'My Clients', clients_path %></li>
@@ -25,11 +37,11 @@
       <% end %>
     </ul>
   </div>
+</nav>
+<div class="container">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
 </div>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
-
 </body>
 </html>

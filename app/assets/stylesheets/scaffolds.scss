@@ -20,8 +20,12 @@ $rose: #e81090;
   }
 }
 
+.box-shadow{
+  box-shadow: 10px 10px 40px #888888;
+}
+
 body {
-  background: url('bkg_pattern.gif');
+  background: #E8EAF6;
   color: #333;
   margin: 0 auto;
 }
