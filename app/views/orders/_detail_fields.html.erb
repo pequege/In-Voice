@@ -1,8 +1,14 @@
 <div class="nested-fields form-style">
-  <%= f.input :project %><br>
-  <%= f.input :task, collection: Order::TASK_TYPES, prompt: 'Select a task' %><br>
-  <%= f.input :description %><br>
-  <%= f.input :rate, input_html: { min: '1', step: 'any' }  %><br>
-  <%= f.input :hour, input_html: { min: '1', step: 'any' }  %><br>
+  <%= f.input :project %>
+  <%= f.label :task, "Task: " %>
+  <%= f.select :task do %>
+    <option value="" disabled selected>Choose your option</option>
+    <% Order::TASK_TYPES.each do |task| %>
+      <%= content_tag(:option, task, value: task) %>
+    <%end%>
+  <%end%>
+  <%= f.input :description %>
+  <%= f.input :rate, input_html: { min: '1', step: 'any' }  %>
+  <%= f.input :hour, input_html: { min: '1', step: 'any' }  %>
   <i class="fa fa-trash"></i><%= link_to_remove_association(" Remove line", f) %>
 </div>

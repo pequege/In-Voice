@@ -16,7 +16,8 @@ gem 'font-awesome-sass' #for awesome icons
 gem 'wicked_pdf' #for PDF export
 gem 'wkhtmltopdf-binary'
 gem 'simple_form', '~> 3.1.0'
-gem 'rails_12factor', group: :production 
+gem 'rails_12factor', group: :production
+gem 'materialize-sass'
 
 group :development, :test do
   gem 'byebug'
