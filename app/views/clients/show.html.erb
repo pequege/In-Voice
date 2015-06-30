@@ -28,5 +28,9 @@
   <%= @client.language %>
 </p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to edit_client_path(@client) do %>
+  <button class="waves-effect waves-teal btn-flat">Edit</button>
+<% end %>
+<%= link_to clients_path do %>
+  <button class="waves-effect waves-teal btn-flat">Back</button>
+<% end %>

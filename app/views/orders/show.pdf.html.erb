@@ -1,5 +1,5 @@
 <div id="invoice_preview">
-  <%= image_tag("insignia_header.png", class: "header_img") %>
+  <%= wicked_pdf_image_tag 'insignia_header.png', class: "header_img" %>
   <div id="header">
     <div id="id_number">
       #<%= sprintf '%03d', @order.order_number %>
@@ -7,14 +7,14 @@
     <div class="date">
       <ul>
         <li><b>INVOICE</b></li>
-        <li><%= @order.created_at.strftime("%B %d,%Y") %></li>
+        <li><%= @order.created_at.strftime("%^B %d,%Y") %></li>
       </ul>
     </div>
   </div>
 
 
   <div id="bill_to">
-    <div class="title"><h2>BILL TO</h2><i class="fa fa-file-text-o"> &nbsp </i></div>
+    <div class="title"><h2><%= t 'invoice.bill_to_title' %></h2><i class="fa fa-file-text-o"></i></div>
     <% if @order.client %>
       <ul>
         <li><%= @order.client.name %> | <span class="email"><%= @order.client.email %></span></li>
@@ -28,12 +28,12 @@
   <table>
     <thead>
       <tr>
-        <th class="title" colspan="2">Project</th>
-        <th>Task</th>
-        <th>Description</th>
+        <th class="title" colspan="2"><%= t 'invoice.project' %></th>
+        <th><%= t 'invoice.task' %></th>
+        <th><%= t 'invoice.description' %></th>
         <th>HS</th>
-        <th>Rate</th>
-        <th>Amount</th>
+        <th><%= t 'invoice.rate' %></th>
+        <th><%= t 'invoice.amount' %></th>
       </tr>
     </thead>
     <tbody>
@@ -62,11 +62,11 @@
   <div id="pricing">
     <div id="notes">
       <div id="extra">
-        <strong>Additional notes: <br></strong>
+        <strong><%= t 'invoice.adds' %><br></strong>
         <%= @order.extra %>
       </div>
       <div id="others">
-        <strong>Others: <br></strong>
+        <strong><%= t 'invoice.others' %><br></strong>
         <%= @order.other %>
       </div>
     </div>
@@ -74,12 +74,12 @@
       <table>
         <tr>
           <th class="no-style">Subtotal:</th>
-          <th class="no-style">USD</th>
+          <th class="no-style"> <%= @order.currensy_type %> </th>
           <th><%= number_to_currency @order.subtotal %></th>
         </tr>
         <tr>
-          <th class="no-style">Others:</th>
-          <th class="no-style">USD</th>
+          <th class="no-style"><%= t 'invoice.others' %></th>
+          <th class="no-style"> <%= @order.currensy_type %> </th>
           <th><%= number_to_currency @order.charge %></th>
         </tr>
         <tr>
@@ -94,7 +94,7 @@
   </div>
 
   <footer>
-    <h2 class="iam-blue">THANK YOU FOR YOUR BUSINESS</h2>
+    <h2 class="iam-blue"><%= t 'invoice.thank' %></h2>
     <ul>
       <li><i class="fa fa-laptop"> http://www.insignia4u.com</i> - 
       <i class="fa fa-envelope"> contacto@insignia4u.com</i> - 
@@ -102,13 +102,10 @@
       <i class="fa fa-facebook-official"> /inisgnia4u</i> - 
       <i class="fa fa-twitter"> @insignia4u</i> - 
       <i class="fa fa-github"> /insignia4u</i></li>
-      <li><i class="fa fa-map-marker"> Lamadrid 318, 4oA, 5oB, San Miguel de Tucumán, Tucumán, Argentina
+      <li><i class="fa fa-map-marker"> Lamadrid 318, 4ºA, 5ºB, San Miguel de Tucumán, Tucumán, Argentina
 </i> - 
       <i class="fa fa-phone"> +54 (381) 4202730
 </i> - </li>
     </ul>
   </footer>
 </div>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

@@ -110,5 +110,9 @@
   </footer>
 </div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to edit_order_path(@order) do %>
+  <button class="waves-effect waves-teal btn-flat">Edit</button>
+<% end %>
+<%= link_to orders_path do %>
+  <button class="waves-effect waves-teal btn-flat">Back</button>
+<% end %>

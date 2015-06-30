@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
         format.html
         format.pdf do
           render pdf: "order",
+          page_size: 'A4',
           template: 'orders/show.pdf.html.erb',
           show_as_html:params[:debug].present? ,
           layout: "pdf_layout.html"

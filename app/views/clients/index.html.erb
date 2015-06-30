@@ -26,5 +26,6 @@
 
 <br>
 
-<i class="fa fa-user-plus"></i>
-<%= link_to 'New Client', new_client_path %>
+<%= link_to new_client_path do %>
+  <button class="waves-effect waves-teal btn-flat"><i class="fa fa-user-plus"></i>add client</button>
+<% end %>

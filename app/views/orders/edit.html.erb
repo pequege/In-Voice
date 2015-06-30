@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to @order do %>
+  <button class="waves-effect waves-teal btn-flat">Show</button>
+<% end %>
+<%= link_to order_path do %>
+  <button class="waves-effect waves-teal btn-flat">Back</button>
+<% end %>
