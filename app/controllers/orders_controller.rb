@@ -110,14 +110,23 @@ class OrdersController < ApplicationController
 
     def generate_and_save_pdf(order)
       @order = order
-      html = render_to_string(:template => 'orders/show.pdf.html.erb')
-      pdf_string = WickedPdf.new.pdf_from_string(html, page_size: 'A4', encoding: 'UTF-8', template: 'orders/show.pdf.html.erb', show_as_html:params[:debug].present?, layout: "pdf_layout.html")
+      pdf_string = WickedPdf.new.pdf_from_string(
+        ActionController::Base.new().render_to_string(
+          template: 'orders/show.pdf.html.erb',
+          locals: {
+            :@order => order
+          },
+          formats: [:pdf],
+          layout: "pdf_layout.html"
+        ), pdf: "test", template: 'orders/show.pdf.html.erb', encoding: "UTF-8", layout: "pdf_layout.html",page_size: 'A4')
+      # pdf_string = WickedPdf.new.pdf_from_string(html, page_size: 'A4', encoding: 'UTF-8', template: 'orders/show.pdf.html.erb', show_as_html:params[:debug].present?, layout: "pdf_layout.html")
       tempfile = Tempfile.new(["#{@order.order_number}", ".pdf"], Rails.root.join('tmp'))
       tempfile.binmode
       tempfile.write pdf_string
       tempfile.close
       @order.invoice_file = File.open tempfile.path
-      @order.invoice_file_file_name = "#{@order.order_number}.pdf"
+      #234_08/20/15_TableHopping
+      @order.invoice_file_file_name = "#{@order.order_number}_#{@order.created_at.strftime("%m-%d-%y")}_#{@order.client.name}.pdf"
       @order.save
     end
 end

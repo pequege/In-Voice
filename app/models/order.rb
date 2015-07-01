@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   end
 
   def custom_path
-    "#{user.id}/#{client.name}/:filename"
+    "#{client.name}/:filename"
   end
 
 end
