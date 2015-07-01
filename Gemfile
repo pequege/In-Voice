@@ -18,6 +18,8 @@ gem 'wkhtmltopdf-binary'
 gem 'simple_form', '~> 3.1.0'
 gem 'rails_12factor', group: :production
 gem 'materialize-sass'
+gem "paperclip", "~> 4.3"
+gem "paperclip-dropbox", ">= 1.1.7"
 
 group :development, :test do
   gem 'byebug'

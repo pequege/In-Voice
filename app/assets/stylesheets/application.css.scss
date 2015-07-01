@@ -26,3 +26,11 @@ $primary-color: color("blue", "lighten-2") !default;
 .nav-wrapper{
   background-color: #28467b;
 }
+
+.box-shadow{
+  border-radius: 0;
+}
+
+th{
+  border-radius: 0 !important;
+}
