@@ -1,2 +1,0 @@
-class InvoiceFileController < ApplicationController
-end

@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
       if @client
         format.html
       else
-        format.html {redirect_to root_path, notice: "No te hagas el pillo, picaron"}
+        format.html {redirect_to root_path, notice: "Client not found"}
       end
     end
   end

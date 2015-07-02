@@ -19,13 +19,11 @@ class Order < ActiveRecord::Base
   CURRENSY_TYPE = [ "ARS", "EUR", "USD" ]
 
   def subtotal
-    subtotal = details.sum(:amount)
-    return subtotal
+    details.sum(:amount)
   end
 
   def total
-    total = charge.to_s.to_d + subtotal.to_s.to_d
-    return total
+    charge.to_s.to_d + subtotal.to_s.to_d
   end
 
   def custom_path

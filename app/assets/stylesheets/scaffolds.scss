@@ -82,34 +82,3 @@ a {
     list-style: square;
   }
 }
-
-#nav{
-  background-color: $blue;
-  color: $white;
-  height: 4em;
-  a{
-    color: $white;
-  }
-  ul{
-    display: flex;
-    height: 50px;
-    list-style: none;
-    margin: 0 auto;
-    li{
-      color: $white;
-      font-size: 25px;
-      font-weight: bolder;
-      margin: 15px;
-      a:hover{
-        background-color: #3498DB;
-      }
-      span{
-        color: $rose;
-      }
-      &:first-child{
-        border-left: none;
-        font-size: 30px;
-      }
-    }
-  }
-}
