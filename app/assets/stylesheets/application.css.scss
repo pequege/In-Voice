@@ -19,10 +19,16 @@ $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
 
 .btn{
+  @extend .pink, .lighten-4;
   i{
     font-size: 12px;
   }
 }
+
+.btn-flat{
+  
+}
+
 .nav-wrapper{
   background-color: #28467b;
 }
@@ -33,4 +39,13 @@ $primary-color: color("blue", "lighten-2") !default;
 
 th{
   border-radius: 0 !important;
+}
+
+.nav-wrapper{
+  .brand-logo{
+    img{
+      padding: 16px !important; 
+      width: 150px !important;
+    }
+  }
 }

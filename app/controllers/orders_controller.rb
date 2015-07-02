@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :client_presence, only: [:new, :index]
+  before_action :client_presence
 
   # GET /orders
   # GET /orders.json
@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -125,7 +125,6 @@ class OrdersController < ApplicationController
       tempfile.write pdf_string
       tempfile.close
       @order.invoice_file = File.open tempfile.path
-      #234_08/20/15_TableHopping
       @order.invoice_file_file_name = "#{@order.order_number}_#{@order.created_at.strftime("%m-%d-%y")}_#{@order.client.name}.pdf"
       @order.save
     end
