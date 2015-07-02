@@ -120,7 +120,7 @@ class OrdersController < ApplicationController
           layout: "pdf_layout.html"
         ), pdf: "test", template: 'orders/show.pdf.html.erb', encoding: "UTF-8", layout: "pdf_layout.html",page_size: 'A4')
       # pdf_string = WickedPdf.new.pdf_from_string(html, page_size: 'A4', encoding: 'UTF-8', template: 'orders/show.pdf.html.erb', show_as_html:params[:debug].present?, layout: "pdf_layout.html")
-      tempfile = Tempfile.new(["#{@order.order_number}", ".pdf"], Rails.root.join('tmp'))
+      tempfile = Tempfile.new(["#{@order.order_number}", ".pdf"])
       tempfile.binmode
       tempfile.write pdf_string
       tempfile.close

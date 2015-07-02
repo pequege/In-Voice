@@ -11,14 +11,6 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = current_user.clients.find_by(id: params[:id])
-    respond_to do |format|
-      if @client
-        format.html
-      else
-        format.html {redirect_to root_path, notice: "No te hagas el pillo, picaron"}
-      end
-    end
   end
 
   # GET /clients/new
@@ -73,7 +65,10 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])
+      @client = current_user.clients.find_by(id: params[:id])
+      unless @client
+        redirect_to root_path, notice: "You have no permissions to access to this client."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

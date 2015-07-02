@@ -2,12 +2,12 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
+  <h5>App configuration</h5>
   <div class="field">
-    <%= f.label "Set index minimum" %><br />
+    <%= f.label "Set a minimum order number for your account" %><br />
     <%= f.number_field :min_index, autofocus: true %>
   </div>
-
+  <h5>Account Configuration</h5>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email %>
