@@ -2,7 +2,7 @@ es:
   invoice:
     bill_to_title: "Cobrar a"
     project: Proyecto
-    task: Tarea
+    task: tarea
     description: Descripción
     rate: Tarifa
     amount: Cantidad
@@ -11,58 +11,24 @@ es:
     thank: "Gracias por su negocio"
 
   date:
-    abbr_day_names:
-    - dom
-    - lun
-    - mar
-    - mié
-    - jue
-    - vie
-    - sáb
-    abbr_month_names:
-    - 
-    - ene
-    - feb
-    - mar
-    - abr
-    - may
-    - jun
-    - jul
-    - ago
-    - sep
-    - oct
-    - nov
-    - dic
-    day_names:
-    - domingo
-    - lunes
-    - martes
-    - miércoles
-    - jueves
-    - viernes
-    - sábado
     formats:
       default: "%d/%m/%Y"
       long: "%A, %d de %B de %Y"
-      short: "%d de %b"
+      short: "%d de %B del %Y"
     month_names:
     - 
-    - enero
-    - febrero
-    - marzo
-    - abril
-    - mayo
-    - junio
-    - julio
-    - agosto
-    - septiembre
-    - octubre
-    - noviembre
-    - diciembre
-    order:
-    - :day
-    - :month
-    - :year
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Setiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
 
   number:
     currency:
@@ -74,3 +40,9 @@ es:
         significant: false
         strip_insignificant_zeros: false
         unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false

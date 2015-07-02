@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630150703) do
+ActiveRecord::Schema.define(version: 20150702202432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150630150703) do
     t.string   "invoice_file_content_type"
     t.integer  "invoice_file_file_size"
     t.datetime "invoice_file_updated_at"
+    t.date     "date"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id", using: :btree

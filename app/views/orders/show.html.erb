@@ -1,20 +1,22 @@
 <div id="invoice_preview">
-  <%= image_tag("insignia_header.png", class: "header_img") %>
   <div id="header">
     <div id="id_number">
       #<%= sprintf '%03d', @order.order_number %>
     </div>
-    <div class="date">
+    <div id="date">
       <ul>
         <li><b>INVOICE</b></li>
-        <li><%= @order.created_at.strftime("%^B %d,%Y") %></li>
+        <li><%= l @order.date, format: :short %></li>
       </ul>
     </div>
   </div>
 
 
   <div id="bill_to">
-    <div class="title"><h2><%= t 'invoice.bill_to_title' %></h2><i class="fa fa-file-text-o"></i></div>
+    <div class="title row">
+      <div class="col s11"><%= t 'invoice.bill_to_title' %></div>
+      <div class="col s1"><i class="medium material-icons">description</i></div>
+    </div>
     <% if @order.client %>
       <ul>
         <li><%= @order.client.name %> | <span class="email"><%= @order.client.email %></span></li>

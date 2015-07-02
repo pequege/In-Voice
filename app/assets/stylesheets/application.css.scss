@@ -40,12 +40,3 @@ $primary-color: color("blue", "lighten-2") !default;
 th{
   border-radius: 0 !important;
 }
-
-.nav-wrapper{
-  .brand-logo{
-    img{
-      padding: 16px !important; 
-      width: 150px !important;
-    }
-  }
-}

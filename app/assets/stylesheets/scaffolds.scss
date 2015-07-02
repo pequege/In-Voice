@@ -56,13 +56,20 @@ a {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  border: 2px solid rgba(255, 0, 0, 0.28);
+  border-radius: 6px;
+  box-shadow: 1px 1px 10px #888888;
+  transition: 5s;
   display: table;
+  span{
+    .error{
+      text-align: center;
+    }
+  }
 }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;

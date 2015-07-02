@@ -32,28 +32,18 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = current_user.orders.build
+    @order = current_user.orders.new
     @order.details.build
-    if current_user.min_index?
-      @min = current_user.min_index  
-    else
-      @min = 0
-    end
-    @value = @min + current_user.orders.count
   end
 
   # GET /orders/1/edit
   def edit
-    @order.details.build
-    @order = Order.find(params[:id])
-    @min  = current_user.min_index 
-    @value = @order.order_number
   end
 
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_user.orders.build(order_params)
+    @order = current_user.orders.new(order_params)
     respond_to do |format|
       if @order.save
         generate_and_save_pdf(@order)
@@ -93,12 +83,12 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find_by(id: params[:id])
+      @order = current_user.orders.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:extra, :other, :created_at, :client_id, :charge, :order_number, :currensy_type, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
+      params.require(:order).permit(:date, :extra, :other, :created_at, :client_id, :charge, :order_number, :currensy_type, details_attributes: [ :id, :project, :task, :description, :amount, :rate, :hour, :_destroy ])
     end
 
     def client_presence

@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   validates_attachment_content_type :invoice_file, :content_type => ["application/pdf"]
   
   validates :extra, :client, presence: true
-  validates :order_number, uniqueness: true
+  validates :order_number, presence: true, uniqueness: true
 
   accepts_nested_attributes_for :details, :reject_if => :all_blank, allow_destroy: true
 
@@ -25,6 +25,10 @@ class Order < ActiveRecord::Base
   def total
     charge + subtotal
   end
+
+  def value
+    user.min_index + user.orders.count
+  end 
 
   def custom_path
     "#{client.name}/:filename"

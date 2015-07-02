@@ -8,14 +8,28 @@ en:
     amount: Amount
     adds: "Additional notes:"
     others: "Others:"
-    thank: Thank you for your business 
+    thank: Thank you for your business
 
   date:
     formats:
       default: "%d/%m/%Y"
-      short: "%d de %b"
+      short: "%^B, %d %y"
       long: "%d de %B de %Y"
       comment: "%d of %B, %Y at %H:%M"
+    month_names:
+    - 
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
 
   number:
     currency:

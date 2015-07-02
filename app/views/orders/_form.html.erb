@@ -1,8 +1,7 @@
-<%= simple_form_for(@order) do |f| %>
+<%= simple_form_for @order do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
       <ul>
       <% @order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,40 +9,37 @@
       </ul>
     </div>
   <% end %>
-
-<div class="form-style">
-  <%= f.input :order_number, input_html: { min: @min, step: 'any', value: @value } %><br>
-  <h2 id="icon_prefix"><i class="material-icons medium prefix">subtitles</i>Details</h2>
-  <div id="details">
-    <%= f.simple_fields_for :details do |detail| %>
-      <%= render 'detail_fields', f: detail %>
-    <% end %>
-    <div class="links">
-      <i class="fa fa-plus-square-o"></i><%= link_to_add_association(" Add Detail", f, :details) %>
+  <div class="form-style">
+    <%= f.input :order_number, input_html: { min: @current_user.min_index } %>
+    <h2 id="icon_prefix"><i class="material-icons medium prefix">subtitles</i>Details</h2>
+    <div id="details">
+      <%= f.simple_fields_for :details do |detail| %>
+        <%= render 'detail_fields', f: detail %>
+      <% end %>
+      <div class="links">
+        <i class="fa fa-plus-square-o"></i><%= link_to_add_association(" Add Detail", f, :details) %>
+      </div>
     </div>
-  </div>
-  <div class="field">
-    <% if @order.updated_at? %>
+    <div class="field">
       <div class="field">
         <%= label_tag "Date" %>
-        <%= f.date_field :created_at, class: "datepicker" %>
+        <%= f.date_field :date, value: Date.today, class: "datepicker" %>
       </div>
-    <% end %>
-    <div class="field input-field">
-      <%= f.text_area :extra, class: "materialize-textarea" %>
-      <%= label_tag "Additional notes" %>
+      <div class="field input-field">
+        <%= f.text_area :extra, class: "materialize-textarea" %>
+        <%= label_tag "Additional notes" %>
+      </div>
+      <div class="field input-field">
+        <%= f.text_area :other, class: "materialize-textarea" %>
+        <%= label_tag "Others" %>
+      </div>
+      <%= f.input :currensy_type, :collection => ['ARS', 'EUR', 'USD'] %>
+      <%= f.input :charge, input_html: { min: '1', step: 'any' } %>
     </div>
-    <div class="field input-field">
-      <%= f.text_area :other, class: "materialize-textarea" %>
-      <%= label_tag "Others" %>
+    <div class="form-style">
+      <h2>Clients</h2>
+      <%= f.select :client_id, options_for_select(current_user.clients.pluck(:name, :id))%>
     </div>
-    <%= f.input :currensy_type, :collection => ['ARS', 'EUR', 'USD'] %><br>
-    <%= f.input :charge, input_html: { min: '1', step: 'any' } %>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons">send</i></button>
   </div>
-  <div class="form-style">
-    <h2>Clients</h2>
-    <%= f.select :client_id, options_for_select(current_user.clients.pluck(:name, :id))%><br>
-  </div>
-  <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons">send</i></button>
-</div>
 <% end %>
