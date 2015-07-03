@@ -15,7 +15,14 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :details, :reject_if => :all_blank, allow_destroy: true
 
-  TASK_TYPES = [ "Backend development", "Frontend development", "Technical Direction", "Project Management", "Other" ]
+  # after_initialize :set_value
+
+  default_value_for :order_number do |order|
+    min = order.user.min_index || 0
+    order_number =  min + order.user.orders.count
+  end
+
+  TASK_TYPES = [ "Backend development", "Frontend development", "Quallity Assurance", "Technical Direction", "Project Management", "Other" ]
   CURRENSY_TYPE = [ "ARS", "EUR", "USD" ]
 
   def subtotal
@@ -26,9 +33,10 @@ class Order < ActiveRecord::Base
     charge + subtotal
   end
 
-  def value
-    user.min_index + user.orders.count
-  end 
+  # def set_value
+  #   min = user.min_index || 0
+  #   self.order_number =  min + user.orders.count
+  # end 
 
   def custom_path
     "#{client.name}/:filename"

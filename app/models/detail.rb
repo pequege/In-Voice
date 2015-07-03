@@ -1,6 +1,6 @@
 class Detail < ActiveRecord::Base
   belongs_to :order
-  validates :project, presence: true
+  validates :project, :task, :hour, :rate, presence: true
 
   before_save :calculate_amount
 

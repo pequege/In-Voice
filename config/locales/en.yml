@@ -13,7 +13,7 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
-      short: "%^B, %d %y"
+      short: "%^B %d, %Y"
       long: "%d de %B de %Y"
       comment: "%d of %B, %Y at %H:%M"
     month_names:

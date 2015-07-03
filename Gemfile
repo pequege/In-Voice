@@ -20,6 +20,7 @@ gem 'rails_12factor', group: :production
 gem 'materialize-sass'
 gem "paperclip", "~> 4.3"
 gem "paperclip-dropbox", ">= 1.1.7"
+gem "default_value_for", "~> 3.0.0"
 
 group :development, :test do
   gem 'byebug'

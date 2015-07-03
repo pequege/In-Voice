@@ -1,9 +1,7 @@
-<div id="invoice_preview">
-  <div id="header">
-    <div id="id_number">
-      #<%= sprintf '%03d', @order.order_number %>
-    </div>
-    <div id="date">
+<div class="invoice_preview" id="header_img">
+  <div id="header" class="row">
+    <div class="col s1" id="id_number">#<%= sprintf '%03d', @order.order_number %></div>
+    <div class="col s11" id="date">
       <ul>
         <li><b>INVOICE</b></li>
         <li><%= l @order.date, format: :short %></li>
@@ -11,18 +9,17 @@
     </div>
   </div>
 
-
   <div id="bill_to">
     <div class="title row">
       <div class="col s11"><%= t 'invoice.bill_to_title' %></div>
-      <div class="col s1"><i class="medium material-icons">description</i></div>
+      <div class="col s1"><i class="material-icons">description</i></div>
     </div>
     <% if @order.client %>
       <ul>
         <li><%= @order.client.name %> | <span class="email"><%= @order.client.email %></span></li>
         <li class="org-name"><%= @order.client.organization %></li>
         <li><%= @order.client.address %></li>
-        <li><%= link_to @order.client.url, @order.client.url %></li>
+        <li><%= link_to @order.client.url, @order.client.url, class: "url" %></li>
       </ul>
     <% end %>
   </div>
@@ -42,9 +39,9 @@
       <% @order.details.each_with_index do |detail, index| %>
         <tr>
           <th class="black_cell"><%= index + 1 %></th>
-          <th><%= detail.project %></th>
+          <th id="project"><%= detail.project %></th>
           <th><%= detail.task %></th>
-          <th><%= detail.description %></th>
+          <th><%= detail.description.truncate(75, separator: ' ') %></th>
           <th><%= detail.hour %></th>
           <th><%= number_to_currency detail.rate %></th>
           <th><%= number_to_currency detail.amount %></th>
@@ -61,8 +58,8 @@
     </tbody>
   </table>
 
-  <div id="pricing">
-    <div id="notes">
+  <div id="pricing" class="row">
+    <div id="notes" class="col s6">
       <div id="extra">
         <strong><%= t 'invoice.adds' %><br></strong>
         <%= @order.extra %>
@@ -72,7 +69,7 @@
         <%= @order.other %>
       </div>
     </div>
-    <div id="total">
+    <div id="total" class="col s6">
       <table>
         <tr>
           <th class="no-style">Subtotal:</th>
